@@ -1,29 +1,25 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @clock.date %>
-</p>
-
-<p>
-  <strong>Employee:</strong>
-  <%= @clock.employee %>
-</p>
-
-<p>
-  <strong>Evaluation:</strong>
-  <%= @clock.evaluation %>
-</p>
-
-<p>
-  <strong>Moment:</strong>
-  <%= @clock.moment %>
-</p>
-
-<p>
-  <strong>Diference:</strong>
-  <%= @clock.diference %>
-</p>
-
-<%= link_to 'Edit', edit_clock_path(@clock) %> |
-<%= link_to 'Back', clocks_path %>
+<div class="row">
+  <div class="col s7 offset-l2">
+    <div class="card ">
+      <div class="card-content">
+        <div class="row center">
+          <%  if @clock.evaluation == "0" %>
+          <h4 class="red-text ">Check in ready</h4>
+          <% end%>
+          <h5><%= @employee.first_name+" "+@employee.last_name %></h5>
+          <h5>Date: <%= @clock.date.strftime("%Y-%m-%d") %></h5>
+          <h5>Time: <%= @clock.date.strftime("%H:%M:%S") %></h5>
+          <p>
+            <strong>Type log:</strong>
+            <%= @clock.moment.name %>
+          </p>
+          <div class="center">
+            <br>
+            <%= link_to 'Back', root_path, class: "btn red" %>
+            <%= link_to 'History ', clocks_path, class: "btn green" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,4 +16,10 @@
 //= require_tree .
 //= require materialize-sprockets
 
-$('select').material_select();
+if($('select').length>0){
+	$('select').material_select();
+}
+
+setTimeout(function(){
+	$('.autofocus').focus();;
+},100)

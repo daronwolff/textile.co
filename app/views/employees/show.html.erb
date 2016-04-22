@@ -2,7 +2,6 @@
   <div class="card-panel">
     <h4><%= @employee.first_name %> <%= @employee.last_name %></h4>
     <p>Email: <%= @employee.mail %></p>
-    
     <p>Birth: <%= @employee.birth||="--" %></p>
     <% unless @employee.department.nil? %>
     <p>Department: <%= @employee.department.name||="--" %></p>

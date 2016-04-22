@@ -1,37 +1,23 @@
 <%= form_for(@clock) do |f| %>
-  <% if @clock.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@clock.errors.count, "error") %> prohibited this clock from being saved:</h2>
-
-      <ul>
-      <% @clock.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
+<% if @clock.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@clock.errors.count, "error") %> prohibited this clock from being saved:</h2>
+  <ul>
+    <% @clock.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<h4>Welcome to time checker</h4>
+<h5>Please, enter your code</h5>
+<div class="container">
+  <%= f.text_field :employee, placeholder: "Enter the code", required: "true", class: "autofocus" %>
+</div>
+<div class="actions">
+  <div class="row center">
+    <%= f.submit "Check in now!", class: "btn btn-large checkin-buttons" %>
+    <%= button_tag "Reset field", :type => 'reset', class: "btn btn-large red checkin-buttons" %>
   </div>
-  <div class="field">
-    <%= f.label :employee_id %><br>
-    <%= f.text_field :employee_id %>
-  </div>
-  <div class="field">
-    <%= f.label :evaluation %><br>
-    <%= f.text_field :evaluation %>
-  </div>
-  <div class="field">
-    <%= f.label :moment_id %><br>
-    <%= f.text_field :moment_id %>
-  </div>
-  <div class="field">
-    <%= f.label :diference %><br>
-    <%= f.number_field :diference %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>

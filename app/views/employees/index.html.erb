@@ -36,7 +36,6 @@
     <ul class="pagination">
       <%= will_paginate @employees %>
     </ul>
-    
     <% else %>
     <%= render "/partials/no_data",path: new_employee_path, section_name: "Employees list" %>
     <% end %>

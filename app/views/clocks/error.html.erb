@@ -1,0 +1,13 @@
+<%= image_tag "bg_stop.jpg", class: "full-screen-background-image " %>
+<div class="row">
+	<div class="card animated slideInUp margin-top-10 col s6 offset-l3">
+		<div class="card-content center">
+			<h4><%= error_title||="An error has ocurred" %></h4>
+			<p class="flow-text">
+				<%= message||="An error occurred, please try again later." %>
+			</p>
+			<br>
+			<%= link_to "Click to return", root_path, class: "btn " %>
+		</div>
+	</div>
+</div>
