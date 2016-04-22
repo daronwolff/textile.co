@@ -2,10 +2,15 @@ class ClocksController < ApplicationController
 
   before_action :authenticate_admin!, except: [:new,:create,:show,:error]
   before_action :get_last_moment,only: [:create]
-  
+  #skip_before_filter :verify_authenticity_token, :except => [:create]
+  #skip_before_filter :verify_authenticity_token, only: [:index]
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
+
   def index
     @clocks  = Clock.paginate(:page => params[:page], :per_page => 10)
     @missing = Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks WHERE Date(date) >=  ?)',Date.today.to_s)
+    @late = Clock.where(evaluation:0).paginate(:page => params[:page], :per_page => 10)
+
   end
 
   def show
@@ -22,7 +27,6 @@ class ClocksController < ApplicationController
   end
 
   def create
-
     @employee = Employee.find_by_id(params[:clock][:employee].to_i)
     if @employee.nil?
       render :error,:locals=>{error_title: "Error",message: "The entered code does not exist or is invalid"}

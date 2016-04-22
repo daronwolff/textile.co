@@ -5,11 +5,15 @@
       <div class="col s12">
         <ul class="tabs">
           <li class="tab col s3"><a class="active"  href="#today">Today log</a></li>
+          <li class="tab col s3"><a class="active"  href="#late">Late</a></li>
           <li class="tab col s3"><a href="#missing">Missing (<%= @missing.size %>)</a></li>
         </ul>
       </div>
       <div id="today" class="col s12">
         <%= render "list_log", clocks:@clocks %>
+      </div>
+      <div id="late">
+        <%= render "list_log", clocks:@late %>
       </div>
       <div id="missing" class="col s12">
         <%= render "/employees/employees_list", employees:@missing %>

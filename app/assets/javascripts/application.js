@@ -20,6 +20,8 @@ if($('select').length>0){
 	$('select').material_select();
 }
 
+    
+
 setTimeout(function(){
-	$('.autofocus').focus();;
+	$('.autofocus').focus();
 },100)
