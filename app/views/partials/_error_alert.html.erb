@@ -1,0 +1,8 @@
+<div id="error_explanation">
+	<small><%= pluralize(error_data.count, "error") %> prohibited this employee from being saved:</small>
+	<ul>
+		<% error_data.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
