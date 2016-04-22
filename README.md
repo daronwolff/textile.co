@@ -9,6 +9,13 @@ In the admin panel you can :
 
 ## Installation
 Clone the repo and type in your console bundle install
+then
+type in your console  rake db:seed 
+
+## Panel admin
+In your web browser visit http://localhost:3000/admins/sign_in
+You can login with email admin@textil.co and password admin123
+
 ## Usage
 This is  example using CURL 
 curl -H "Content-Type: application/json" -d '{"clock": {"employee":5}}' -X POST http://localhost:3000/clocks.json -i
