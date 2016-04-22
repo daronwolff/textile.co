@@ -1,0 +1,24 @@
+<table class="bordered ">
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Date</th>
+      <th>Evaluation</th>
+      <th>Moment</th>
+      <th>Diference time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% clocks.each do |clock| %>
+    <tr>
+      <td>
+        <%= link_to clock.employee.first_name+" "+clock.employee.last_name, clock.employee %>
+      </td>
+      <td><%= clock.date.strftime("%Y-%m-%d %H:%M:%S") %></td>
+      <td><%= clock.evaluation %></td>
+      <td><%= clock.moment.name %></td>
+      <td><%= clock.diference %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

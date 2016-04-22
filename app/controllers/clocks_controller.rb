@@ -4,13 +4,14 @@ class ClocksController < ApplicationController
   before_action :get_last_moment,only: [:create]
   
   def index
-    @clocks = Clock.paginate(:page => params[:page], :per_page => 10)
-    
+    @clocks  = Clock.paginate(:page => params[:page], :per_page => 10)
+    @missing = Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks WHERE Date(date) >=  ?)',Date.today.to_s)
   end
 
   def show
      @clock = Clock.find(params[:id])     
-     @employee = Employee.find(@clock.employee)
+     #@employee = Employee.find(@clock.employee)
+     #@no_present = @Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks)')
   end
 
   def new

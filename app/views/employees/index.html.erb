@@ -2,40 +2,12 @@
   <div class="card-content">
     <% if @employees.size > 0 %>
     <h4>Listing employees</h4>
-     <div class="row ">
-        <div class="right">
-          <%= link_to "+ Add new employee ", new_employee_path %>
-        </div>
+    <div class="row ">
+      <div class="right">
+        <%= link_to "+ Add new employee ", new_employee_path %>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Mail</th>
-          <th>Birth</th>
-          <th>Department</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @employees.each do |employee| %>
-        <tr>
-          <td><%= employee.first_name %></td>
-          <td><%= employee.last_name %></td>
-          <td><%= employee.mail %></td>
-          <td><%= employee.birth %></td>
-          <td><%= employee.department.name %></td>
-          <td><%= link_to 'Show', employee %></td>
-          <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-          <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <ul class="pagination">
-      <%= will_paginate @employees %>
-    </ul>
+    <%= render "employees_list",employees:@employees %>
     <% else %>
     <%= render "/partials/no_data",path: new_employee_path, section_name: "Employees list" %>
     <% end %>

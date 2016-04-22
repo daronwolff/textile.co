@@ -1,31 +1,23 @@
-<h4>Listing Clocks</h4>
-<table class="bordered ">
-  <thead>
-    <tr>
-      <th>Employee</th>
-      <th>Date</th>
-      <th>Evaluation</th>
-      <th>Moment</th>
-      <th>Diference time</th>
-     </tr>
-  </thead>
-
-  <tbody>
-    <% @clocks.each do |clock| %>
-      <tr>
-        <td>
-        <%= link_to clock.employee.first_name+" "+clock.employee.last_name, clock.employee %>
-        </td>
-        <td><%= clock.date.strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td><%= clock.evaluation %></td>
-        <td><%= clock.moment.name %></td>
-        <td><%= clock.diference %></td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
- <ul class="pagination">
+<div class="card">
+  <div class="card-content">
+    <h4>Listing Clocks</h4>
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active"  href="#today">Today log</a></li>
+          <li class="tab col s3"><a href="#missing">Missing (<%= @missing.size %>)</a></li>
+        </ul>
+      </div>
+      <div id="today" class="col s12">
+        <%= render "list_log", clocks:@clocks %>
+      </div>
+      <div id="missing" class="col s12">
+        <%= render "/employees/employees_list", employees:@missing %>
+      </div>
+    </div>
+    <ul class="pagination">
       <%= will_paginate @employees %>
     </ul>
-<br>
-
+    <br>
+  </div>
+</div>
