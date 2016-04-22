@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @clock.date %>
+</p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @clock.employee %>
+</p>
+
+<p>
+  <strong>Evaluation:</strong>
+  <%= @clock.evaluation %>
+</p>
+
+<p>
+  <strong>Moment:</strong>
+  <%= @clock.moment %>
+</p>
+
+<p>
+  <strong>Diference:</strong>
+  <%= @clock.diference %>
+</p>
+
+<%= link_to 'Edit', edit_clock_path(@clock) %> |
+<%= link_to 'Back', clocks_path %>

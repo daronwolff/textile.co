@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  arrival_time: 2016-04-21 21:09:52
+  departure_time: 2016-04-21 21:09:52
+  tolerance: 1
+
+two:
+  name: MyString
+  description: MyString
+  arrival_time: 2016-04-21 21:09:52
+  departure_time: 2016-04-21 21:09:52
+  tolerance: 1

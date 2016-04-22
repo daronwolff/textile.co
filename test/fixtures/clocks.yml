@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-04-21 21:10:56
+  employee_id: 
+  evaluation: MyString
+  moment_id: 
+  diference: 1
+
+two:
+  date: 2016-04-21 21:10:56
+  employee_id: 
+  evaluation: MyString
+  moment_id: 
+  diference: 1
