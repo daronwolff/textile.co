@@ -1,37 +1,42 @@
 <%= form_for(@department) do |f| %>
-  <% if @department.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@department.errors.count, "error") %> prohibited this department from being saved:</h2>
-
-      <ul>
-      <% @department.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
+<% if @department.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@department.errors.count, "error") %> prohibited this department from being saved:</h2>
+  <ul>
+    <% @department.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<h4><%= action||="Create a new department" %></h4>
+<div class="row">
+  <%= f.label :name %><br>
+  <%= f.text_field :name, required: "true" %>
+</div>
+<div class="row">
+  <%= f.label :description %><br>
+  <%= f.text_field :description,required: "true" %>
+</div>
+<div class="row">
+  <div class="col s12">
     <%= f.label :arrival_time %><br>
-    <%= f.time_select :arrival_time %>
+    <%= f.time_select :arrival_time, {:value => @department.arrival_time, :default => {:hour=>'9',:minute=>'0'}},{ class:"browser-default s3 col" }%>
   </div>
-  <div class="field">
+  
+</div>
+<div class="row">
+  <div class="col s12 ">
     <%= f.label :departure_time %><br>
-    <%= f.time_select :departure_time %>
+    <%= f.time_select :departure_time, {:value => @department.departure_time, :default => {:hour=>'18',:minute=>'0'}},{ class:"browser-default s3 col" }%>
   </div>
-  <div class="field">
-    <%= f.label :tolerance %><br>
-    <%= f.number_field :tolerance %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+<div class="row">
+  <%= f.label :tolerance %><br>
+  <%= f.number_field :tolerance,{required: "true", class:"col s3", :value => @department.tolerance,  }%>
+</div>
+<div class="actions">
+  <%= f.submit "Save changes", class: "btn" %>
+  <%= link_to "Cancel and back", departments_path,class: "btn red" %>
+</div>
 <% end %>
