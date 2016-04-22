@@ -60,7 +60,7 @@ class ClocksController < ApplicationController
     end
 
     def get_next_moment
-      records_today = Clock.where("Date(date) >=  ? and employee_id = ? ",Date.today.to_s,@employee).last
+      records_today = Clock.where( "Date(date) >=  ? and employee_id = ? " ,Date.today.to_s,@employee).last
       if records_today.nil?
         return 1
       else
@@ -74,8 +74,18 @@ class ClocksController < ApplicationController
 
     def get_globals
       @evaluation = ["At time","Late"]
+      
       @clocks  = Clock.paginate(:page => params[:page], :per_page => 10)
-      @missing = Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks WHERE Date(date) >=  ?)',Date.today.to_s)
+      @clocks  = Clock.search_date(params[:date_submit]).paginate(:page => params[:page], :per_page => 10)if params[:date_submit].present?
+
       @late = Clock.where(evaluation:1).paginate(:page => params[:page], :per_page => 10)
+      @late = Clock.where(evaluation:1).search_date(params[:date_submit]).paginate(:page => params[:page], :per_page => 10)if params[:date_submit].present?
+
+      @atTime = Clock.where(evaluation:0).paginate(:page => params[:page], :per_page => 10)
+      @atTime = Clock.where(evaluation:0).search_date(params[:date_submit]).paginate(:page => params[:page], :per_page => 10)if params[:date_submit].present?
+
+      missing = Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks WHERE Date(date) >=  ?)',Date.today.to_s)
+      @missing = missing.paginate(:page => params[:page], :per_page => 10)
+
     end
 end

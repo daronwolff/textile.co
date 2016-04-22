@@ -1,3 +1,10 @@
+<div class="row">
+  <div class="right">
+    <form name="filter">
+      <input type="date"  class="datepicker" placeholder="Filter by date" onchange="document.filter.submit()">
+    </form>
+  </div>
+</div>
 <div class="card">
   <div class="card-content">
     <h4>Listing Clocks</h4>
@@ -5,12 +12,17 @@
       <div class="col s12">
         <ul class="tabs">
           <li class="tab col s3"><a class="active"  href="#today">Today log (<%= @clocks.size %>)</a></li>
+          <li class="tab col s3"><a class="active"  href="#attime">At Time (<%= @atTime.size %>)</a></li>
           <li class="tab col s3"><a class="active"  href="#late">Late (<%= @late.size %>)</a></li>
           <li class="tab col s3"><a href="#missing">Missing (<%= @missing.size %>)</a></li>
         </ul>
       </div>
       <div id="today" class="col s12">
         <%= render "list_log", clocks:@clocks %>
+      </div>
+      
+      <div id="attime" class="col s12">
+        <%= render "list_log", clocks:@atTime %>
       </div>
       <div id="late" class="col s12">
         <%= render "list_log", clocks:@late %>

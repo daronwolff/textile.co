@@ -13,15 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require materialize-sprockets
+//= require_tree .
 
-if($('select').length>0){
-	$('select').material_select();
-}
-
-    
-
-setTimeout(function(){
-	$('.autofocus').focus();
-},100)
+ 
