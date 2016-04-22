@@ -2,21 +2,14 @@ class ClocksController < ApplicationController
 
   before_action :authenticate_admin!, except: [:new,:create,:show,:error]
   before_action :get_last_moment,only: [:create]
-  #skip_before_filter :verify_authenticity_token, :except => [:create]
-  #skip_before_filter :verify_authenticity_token, only: [:index]
+  before_action :get_globals,only: [:index]
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
 
   def index
-    @clocks  = Clock.paginate(:page => params[:page], :per_page => 10)
-    @missing = Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks WHERE Date(date) >=  ?)',Date.today.to_s)
-    @late = Clock.where(evaluation:0).paginate(:page => params[:page], :per_page => 10)
-
   end
 
   def show
      @clock = Clock.find(params[:id])     
-     #@employee = Employee.find(@clock.employee)
-     #@no_present = @Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks)')
   end
 
   def new
@@ -34,8 +27,9 @@ class ClocksController < ApplicationController
     end
 
     arrival_time = @employee.department.arrival_time
+    puts arrival_time 
     tolerance_time = @employee.department.tolerance.to_i
-    evaluate = check_entry(arrival_time,DateTime.now,tolerance_time)
+    evaluate = check_entry(arrival_time,tolerance_time)
     moment = get_next_moment
 
     if moment <= @last_moment
@@ -56,12 +50,12 @@ class ClocksController < ApplicationController
   end
 
   private
-    def check_entry(department_time,begin_work,consideration)
+    def check_entry(department_time,consideration)
         end_tolerance = department_time + ((consideration/60.0)/24.0)
-        if begin_work > end_tolerance
-           return 0
+         if DateTime.now.strftime( "%H%M%S%N" ) <= end_tolerance.strftime( "%H%M%S%N" )
+             return 0
         else
-           return 1
+             return 1
         end
     end
 
@@ -76,5 +70,12 @@ class ClocksController < ApplicationController
 
     def get_last_moment
       @last_moment =  Moment.last.id.to_i
+    end
+
+    def get_globals
+      @evaluation = ["At time","Late"]
+      @clocks  = Clock.paginate(:page => params[:page], :per_page => 10)
+      @missing = Employee.where('id NOT IN (SELECT DISTINCT(employee_id) FROM clocks WHERE Date(date) >=  ?)',Date.today.to_s)
+      @late = Clock.where(evaluation:1).paginate(:page => params[:page], :per_page => 10)
     end
 end

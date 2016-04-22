@@ -1,3 +1,4 @@
+<% if clocks.size > 0%>
 <table class="bordered ">
   <thead>
     <tr>
@@ -5,8 +6,7 @@
       <th>Date</th>
       <th>Evaluation</th>
       <th>Moment</th>
-      <th>Diference time</th>
-    </tr>
+     </tr>
   </thead>
   <tbody>
     <% clocks.each do |clock| %>
@@ -15,10 +15,14 @@
         <%= link_to clock.employee.first_name+" "+clock.employee.last_name, clock.employee %>
       </td>
       <td><%= clock.date.strftime("%Y-%m-%d %H:%M:%S") %></td>
-      <td><%= clock.evaluation %></td>
+      <td><%= @evaluation[clock.evaluation.to_i] %></td>
       <td><%= clock.moment.name %></td>
-      <td><%= clock.diference %></td>
-    </tr>
+     </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+    <div class="row">
+      <%= render "/partials/no_data",path: false, section_name: "Employees list" %>
+    </div>
+<% end %>

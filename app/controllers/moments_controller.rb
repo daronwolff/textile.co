@@ -1,5 +1,6 @@
 class MomentsController < ApplicationController
   before_action :set_moment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /moments
   # GET /moments.json

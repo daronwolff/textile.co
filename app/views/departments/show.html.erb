@@ -1,29 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @department.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @department.description %>
-</p>
-
-<p>
-  <strong>Arrival time:</strong>
-  <%= @department.arrival_time %>
-</p>
-
-<p>
-  <strong>Departure time:</strong>
-  <%= @department.departure_time %>
-</p>
-
-<p>
-  <strong>Tolerance:</strong>
-  <%= @department.tolerance %>
-</p>
-
-<%= link_to 'Edit', edit_department_path(@department) %> |
-<%= link_to 'Back', departments_path %>
+  <div class="card">
+    <div class="card-content">
+      
+      <p>
+        <strong>Name:</strong>
+        <%= @department.name %>
+      </p>
+      <p>
+        <strong>Description:</strong>
+        <%= @department.description %>
+      </p>
+      <p>
+        <strong>Arrival time:</strong>
+        <%= @department.arrival_time %>
+      </p>
+      <p>
+        <strong>Departure time:</strong>
+        <%= @department.departure_time %>
+      </p>
+      <p>
+        <strong>Tolerance:</strong>
+        <%= @department.tolerance %>
+      </p>
+      <br>
+      <%= link_to 'Edit', edit_department_path(@department), class: "btn" %>
+      <%= link_to 'Back', departments_path, class: "btn red" %>
+    </div>
+  </div>

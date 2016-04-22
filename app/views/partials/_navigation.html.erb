@@ -4,17 +4,17 @@
 			<ul id="nav-mobile" class=" hide-on-med-and-down">
 				<% if admin_signed_in?%>
 				<li>
-					<%= link_to "Log entries", clocks_path %>
+					<%= link_to "Log entries", clocks_path,method: :get  %>
 				</li>
 				<li>
-					<%= link_to "Employes List", employees_path %>
+					<%= link_to "Employes List", employees_path,method: :get  %>
 				</li>
 				
 				<li>
-					<%= link_to "Departments List", departments_path %>
+					<%= link_to "Departments List", departments_path,method: :get  %>
 				</li>
 				<li>
-					<%= link_to "Moments List", moments_path %>
+					<%= link_to "Moments List", moments_path,method: :get  %>
 				</li>
 				<li class="col-md right">
 					<ul id="dropdown1" class="dropdown-content">
