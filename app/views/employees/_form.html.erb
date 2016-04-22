@@ -2,27 +2,28 @@
 <% if @employee.errors.any? %>
 <%=  render "/partials/error_alert.html", error_data: @employee.errors  %>
 <% end %>
-<div class="field">
+<div class="row">
   <%= f.label :first_name%><br>
   <%= f.text_field :first_name,required: "true"  %>
 </div>
-<div class="field">
+<div class="row">
   <%= f.label :last_name %><br>
   <%= f.text_field :last_name,required: "true"  %>
 </div>
-<div class="field">
+<div class="row">
   <%= f.label :mail %><br>
   <%= f.text_field :mail,required: "true"  %>
 </div>
-<div class="field">
+<div class="row">
   <%= f.label :birth %><br>
-  <%= f.date_select :birth, class: "browser-default" %>
+  <%= f.date_select :birth,{:prompt=>true}, {:class=>'browser-default col s2'}  %>
 </div>
-<div class="field">
+<div class="row">
   <%= f.label :department_id %><br>
-  <%= f.text_field :department_id %>
+  <%= f.collection_select :department_id, @departments,:id,:name,{:prompt=>false}, {:class=>'browser-default col s'}    %>
 </div>
 <div class="actions">
-  <%= f.submit %>
+  <%= f.submit "Save changes", class: "btn" %>
+  <%= link_to "Cancel and return",employees_path,class: "btn red" %>
 </div>
 <% end %>

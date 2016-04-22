@@ -1,6 +1,13 @@
 <div class="card">
   <div class="card-content">
+    <% if @departments.size > 0 %>
+    
     <h4>Listing Departments</h4>
+    <div class="row ">
+      <div class="right">
+        <%= link_to "+ Add new department ", new_department_path %>
+      </div>
+    </div>
     <table>
       <thead>
         <tr>
@@ -27,7 +34,10 @@
         <% end %>
       </tbody>
     </table>
+    
+    <% else %>
+    <%= render "/partials/no_data",path: new_department_path, section_name: "Employees list" %>
+    <% end %>
     <br>
   </div>
 </div>
-<%= link_to 'New Department', new_department_path %>

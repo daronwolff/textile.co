@@ -1,27 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Moments</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @moments.each do |moment| %>
-      <tr>
-        <td><%= moment.name %></td>
-        <td><%= link_to 'Show', moment %></td>
-        <td><%= link_to 'Edit', edit_moment_path(moment) %></td>
-        <td><%= link_to 'Destroy', moment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="card">
+  <div class="card-content">
+    <% if @moments.size > 0 %>
+    <h4>Listing Moments</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @moments.each do |moment| %>
+        <tr>
+          <td><%= moment.name %></td>
+          <td><%= link_to 'Show', moment %></td>
+          <td><%= link_to 'Edit', edit_moment_path(moment) %></td>
+          <td><%= link_to 'Destroy', moment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <% else %>
+    <%= render "/partials/no_data",path: new_moment_path, section_name: "Moments list" %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Moment', new_moment_path %>
+    
+  </div>
+</div>
