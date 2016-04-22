@@ -1,23 +1,41 @@
 <div class="row">
   <div class="card-panel">
-    <h4><%= @employee.first_name %> <%= @employee.last_name %></h4>
-    <p>Email: <%= @employee.mail %></p>
-    <p>Birth: <%= @employee.birth||="--" %></p>
-    <% unless @employee.department.nil? %>
-    <p>Department: <%= @employee.department.name||="--" %></p>
-    <% end %>
-    <strong>Barcode</strong>
     <div class="row">
-      <div class="center">
-        <%= @barcode.to_html.html_safe%>
+      <h5><%= @employee.first_name %> <%= @employee.last_name %></h5>
+      <p>Email: <%= @employee.mail %></p>
+      <p>Birth: <%= @employee.birth||="--" %></p>
+      <% unless @employee.department.nil? %>
+      <p>Department: <%= @employee.department.name||="--" %></p>
+      <% end %>
+      <div class="">
+        <% if  @clocks.size > 0%>
+        <h5>History</h5>
+        <table class="bordered ">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Moment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%  @clocks.each do |clock| %>
+            <tr>
+              <td><%= clock.date.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td><%= clock.moment.name %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% else %>
+        <div class="row">
+          <%= render "/partials/no_data",path: false, section_name: "Employees list" %>
+        </div>
+        <% end %>
       </div>
     </div>
-    <div class="divider"></div>
-    <p class="right-align">
-      <%= link_to "Edit information",edit_employee_path(@employee) %>
-      |
-      <%= link_to "Delete user ",@employee, method: :delete %>
-    </p>
-    
+    <div class="row">
+      <h5>Barcode </h5>
+      <%= @barcode.to_html.html_safe%>
+    </div>
   </div>
 </div>

@@ -1,13 +1,14 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
   before_action :set_departments, only: [:new,:edit]
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except:[:show]
 
   def index
     @employees = Employee.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
+
   end
 
   def new
@@ -58,6 +59,7 @@ class EmployeesController < ApplicationController
       @employee = Employee.find(params[:id])
       code =params[:id].to_s.rjust(5, '0')
       @barcode = generate_barcode(code)
+      @clocks = Clock.where("employee_id = ?",params[:id])
      end
     def generate_barcode(data)
       require 'barby'

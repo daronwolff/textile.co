@@ -1,3 +1,4 @@
+<%= image_tag "bg.jpg", class: "full-screen-background-image " %>
 <div class="row">
   <div class="col s7 offset-l2">
     <div class="card ">
@@ -6,7 +7,7 @@
           <%  if @clock.evaluation == "0" %>
           <h4 class="red-text ">Check in ready</h4>
           <% end%>
-          <h5><%= @employee.first_name+" "+@employee.last_name %></h5>
+          <h4><%= @employee.first_name+" "+@employee.last_name %></h4>
           <h5>Date: <%= @clock.date.strftime("%Y-%m-%d") %></h5>
           <h5>Time: <%= @clock.date.strftime("%H:%M:%S") %></h5>
           <p>
@@ -16,6 +17,7 @@
           <div class="center">
             <br>
             <%= link_to 'Back', root_path, class: "btn red" %>
+            <%= link_to 'History', employee_path(@employee), class: "btn green" %>
            </div>
         </div>
       </div>

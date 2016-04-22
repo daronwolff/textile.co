@@ -9,7 +9,8 @@ class ClocksController < ApplicationController
   end
 
   def show
-     @clock = Clock.find(params[:id])     
+     @clock = Clock.find(params[:id])
+     @employee = Employee.find(@clock.employee_id)
   end
 
   def new
