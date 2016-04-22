@@ -1,29 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @employee.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @employee.last_name %>
-</p>
-
-<p>
-  <strong>Mail:</strong>
-  <%= @employee.mail %>
-</p>
-
-<p>
-  <strong>Birth:</strong>
-  <%= @employee.birth %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @employee.department %>
-</p>
-
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<div class="row">
+  <div class="card-panel">
+    <h4><%= @employee.first_name %> <%= @employee.last_name %></h4>
+    <p>Email: <%= @employee.mail %></p>
+    
+    <p>Birth: <%= @employee.birth||="--" %></p>
+    <% unless @employee.department.nil? %>
+    <p>Department: <%= @employee.department.name||="--" %></p>
+    <% end %>
+    <strong>Barcode</strong>
+    <div class="row">
+      <div class="center">
+        <%= @barcode.to_html.html_safe%>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="right-align">
+      <%= link_to "Edit information",edit_employee_path(@employee) %>
+      |
+      <%= link_to "Delete user ",@employee, method: :delete %>
+    </p>
+    
+  </div>
+</div>

@@ -56,8 +56,15 @@ class EmployeesController < ApplicationController
 
     def set_employee
       @employee = Employee.find(params[:id])
+      code =params[:id].to_s.rjust(5, '0')
+      @barcode = generate_barcode(code)
+     end
+    def generate_barcode(data)
+      require 'barby'
+      require 'barby/barcode/code_128'
+      require 'barby/outputter/html_outputter'
+      @barcode = Barby::Code128B.new(data)
     end
-
     def set_departments
       @departments = Department.all
     end
