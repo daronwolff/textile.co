@@ -1,0 +1,38 @@
+<header>
+	<nav>
+		<div class="nav-wrapper blue-grey darken-4">
+			<ul id="nav-mobile" class=" hide-on-med-and-down">
+				<% if admin_signed_in?%>
+				<li>
+					<%= link_to "<i class='material-icons'>home</i>".html_safe, false %>
+				</li>
+				
+				<li>
+					<%= link_to "Employes List", employees_path %>
+				</li>
+				
+				<li>
+					<%= link_to "Departments List", departments_path %>
+				</li>
+				
+				<li class="col-md right">
+					<ul id="dropdown1" class="dropdown-content">
+						<li><%= link_to "Edit account", edit_admin_registration_path %>
+						</li>
+						<li class="divider"></li>
+						<li><%= link_to "Log out", destroy_admin_session_path,method: :delete %></li>
+					</ul>
+					<a class="dropdown-button" href="#!" data-activates="dropdown1">Admin account
+						<i class="material-icons right">arrow_drop_down</i>
+					</a>
+				</li>
+				<% else %>
+				<li>
+					<%= link_to "Check in", root_path %>
+				</li>
+				<% end %>
+				
+			</ul>
+		</div>
+	</nav>
+</header>

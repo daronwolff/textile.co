@@ -2,7 +2,6 @@
   <% if @employee.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
-
       <ul>
       <% @employee.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,20 +11,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.label :first_name%><br>
+    <%= f.text_field :first_name,required: "true"  %>
   </div>
   <div class="field">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name,required: "true"  %>
   </div>
   <div class="field">
     <%= f.label :mail %><br>
-    <%= f.text_field :mail %>
+    <%= f.text_field :mail,required: "true"  %>
   </div>
   <div class="field">
     <%= f.label :birth %><br>
-    <%= f.date_select :birth %>
+    <%= f.date_select :birth, class: "browser-default" %>
   </div>
   <div class="field">
     <%= f.label :department_id %><br>
